@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Wishful Thoughts — Nick Koech</title>
+<style>
+:root{--bg:#eceef1;--ink:#1b2430;--soft:#5a6573;--acc:#5b3fa0;--card:#fff;--line:#d5d9df}
+@media (prefers-color-scheme:dark){:root{--bg:#161b23;--ink:#e8eaee;--soft:#9aa4b2;--acc:#a894e6;--card:#1f2630;--line:#323b48}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,sans-serif}
+main{max-width:34rem;margin:0 auto;padding:1.5rem 1.2rem 4rem}
+h1{font:700 2.3rem/1.1 Georgia,serif;margin:.5rem 0}
+.by{color:var(--soft);margin:0 0 1.4rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.1rem;margin:1.2rem 0}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:.7rem 1.1rem;background:var(--acc);color:#fff;margin:.3rem .3rem .3rem 0}
+button.alt{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+button:disabled{opacity:.5}
+input{font:inherit;width:100%;padding:.7rem;margin:.3rem 0;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.price{font-size:1.2rem;font-weight:600}
+.msg{color:var(--acc);min-height:1.4em}
+.top{display:flex;justify-content:space-between;align-items:center;color:var(--soft);font-size:.9rem}
+.read{font:1.15rem/1.8 Georgia,serif;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.read p{margin:0 0 1.1em}
+.ch{color:var(--soft);margin:0}
+.nav{display:flex;justify-content:space-between;margin-top:1.5rem}
+</style>
+</head>
+<body>
+<main id="app">Loading…</main>
+<script src="https://js.paystack.co/v2/inline.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+const URL_ = "https://satitxyuyzsgfmprqbqh.supabase.co";
+const KEY = "sb_publishable_wggLzRt2tUxcyjPY0znQAg_BGGFVwt2";
+const sb = supabase.createClient(URL_, KEY);
+const app = document.getElementById("app");
+const PK = "pk_test_45cfe233a23758b43ebb77a97a1ef187601ef17f";
+const RATE = 130; // KES per USD for international readers
+let book = null, user = null, note = "", owned = false;
+
+function did(){
+  try{let d=localStorage.getItem("did");if(!d){d=crypto.randomUUID();localStorage.setItem("did",d)}return d}
+  catch(e){return "no-storage"}
+}
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const fmt = t => t.split(/\n{2,}/).map(p => "<p>"+esc(p).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\*(.+?)\*/g,"<i>$1</i>").replace(/\n/g,"<br>")+"</p>").join("");
+const isKenya = () => { try{return Intl.DateTimeFormat().resolvedOptions().timeZone==="Africa/Nairobi"}catch(e){return false} };
+function human(e){
+  const m = (e && e.message) || "";
+  if(m.includes("device_mismatch")) return "This account is linked to another phone. Log in on that phone, or contact the author to reset.";
+  if(m.includes("not_purchased")) return "You haven't bought this book yet.";
+  if(m.includes("not_logged_in")) return "Log in to keep reading.";
+  if(m.includes("chapter_not_found")) return "That's the last chapter available.";
+  return m || "Something went wrong. Try again.";
+}
+
+function priceInfo(){
+  const kes = isKenya() ? book.price_kes : Math.round(Number(book.price_usd)*RATE);
+  const label = isKenya() ? "KES "+kes : "KES "+kes+" (about USD "+Number(book.price_usd).toFixed(2)+")";
+  return {kes,label};
+}
+async function refreshOwned(){
+  owned = false;
+  if(!user || !book) return;
+  const r = await sb.from("purchases").select("id").eq("book_id",book.id).limit(1);
+  owned = !!(r.data && r.data.length);
+}
+function buy(){
+  if(!user){ note="Log in or sign up first, then tap Buy."; return home() }
+  if(!window.PaystackPop){ note="Payment didn't load. Check your connection and try again."; return home() }
+  new PaystackPop().newTransaction({
+    key:PK, email:user.email, amount:priceInfo().kes*100, currency:"KES",
+    metadata:{user_id:user.id, book_id:book.id},
+    onSuccess: async t => {
+      app.innerHTML = "Confirming your payment…";
+      const {data,error} = await sb.functions.invoke("verify-payment",{body:{reference:t.reference,book_id:book.id}});
+      if(error || (data && data.error)) note = "We couldn't confirm your payment. Please contact the author with this reference: "+t.reference;
+      else { note = "Payment confirmed. Enjoy the book!"; await refreshOwned(); }
+      home();
+    },
+    onCancel: () => { note="Payment cancelled."; home() }
+  });
+}
+
+async function registerDevice(){
+  const {error} = await sb.rpc("register_device",{p_device_id:did()});
+  if(error){ await sb.auth.signOut(); user=null; note=human(error); return false }
+  return true;
+}
+
+async function home(){
+  const price = book ? priceInfo().label : "";
+  app.innerHTML = `
+    <div class="top"><span>Nick Koech</span><span>${user?esc(user.email)+' · <a href="#" id="out">Log out</a>':''}</span></div>
+    <h1>${book?esc(book.title):'My Wishful Thoughts'}</h1>
+    <p class="by">A novel by Nick Koech</p>
+    <p>${book?esc(book.description||''):''}</p>
+    <p class="price">${price}</p>
+    <button id="sample">Read free chapters</button>
+    ${user?'<button class="alt" id="cont">Continue reading</button>':''}
+    ${owned?'<button class="alt" disabled>You own this book</button>':'<button class="alt" id="buy">Buy this book</button>'}
+    ${user?'':`<div class="card"><b>Sign up or log in</b>
+      <input id="em" type="email" placeholder="Email" autocomplete="email">
+      <input id="pw" type="password" placeholder="Password (6+ characters)" autocomplete="current-password">
+      <button id="in">Log in</button><button class="alt" id="up">Sign up</button></div>`}
+    <p class="msg" id="msg">${esc(note)}</p>`;
+  note = "";
+  const $ = id => document.getElementById(id);
+  $("sample").onclick = () => reader(1);
+  if($("buy")) $("buy").onclick = buy;
+  if($("cont")) $("cont").onclick = () => reader(Number(localStorage.getItem("last")||1));
+  if($("out")) $("out").onclick = async e => { e.preventDefault(); await sb.auth.signOut(); user=null; owned=false; home() };
+  if($("in")) $("in").onclick = async () => {
+    const {data,error} = await sb.auth.signInWithPassword({email:$("em").value.trim(),password:$("pw").value});
+    if(error){ $("msg").textContent = error.message; return }
+    user = data.user;
+    await registerDevice(); await refreshOwned(); home();
+  };
+  if($("up")) $("up").onclick = async () => {
+    const {data,error} = await sb.auth.signUp({email:$("em").value.trim(),password:$("pw").value});
+    if(error){ $("msg").textContent = error.message; return }
+    if(data.session){ user = data.user; await registerDevice(); await refreshOwned(); home() }
+    else $("msg").textContent = "Check your email to confirm your account, then log in.";
+  };
+}
+
+async function reader(n){
+  app.innerHTML = "Loading…";
+  const {data,error} = await sb.rpc("get_chapter",{p_book_id:book.id,p_chapter_number:n,p_device_id:did()});
+  if(error || !data || !data.length){
+    note = human(error);
+    if(n>1 && error && error.message.includes("chapter_not_found")) { return end(n) }
+    return home();
+  }
+  const c = data[0];
+  try{localStorage.setItem("last",n)}catch(e){}
+  app.innerHTML = `
+    <div class="top"><a href="#" id="back">← Back</a><span>Chapter ${c.chapter_number}</span></div>
+    <h1>${esc(c.title)}</h1>
+    <div class="read" id="txt">${fmt(c.content)}</div>
+    <div class="nav">${n>1?'<button class="alt" id="prev">Previous</button>':'<span></span>'}<button id="next">Next chapter</button></div>`;
+  document.getElementById("txt").oncontextmenu = e => e.preventDefault();
+  document.getElementById("back").onclick = e => { e.preventDefault(); home() };
+  if(n>1) document.getElementById("prev").onclick = () => reader(n-1);
+  document.getElementById("next").onclick = () => reader(n+1);
+  window.scrollTo(0,0);
+}
+function end(n){ note="You've reached the end of what's available."; reader(n-1) }
+
+(async () => {
+  const b = await sb.from("books").select("*").eq("published",true).limit(1);
+  if(b.data && b.data.length) book = b.data[0];
+  const s = await sb.auth.getSession();
+  if(s.data.session){ user = s.data.session.user; await registerDevice(); await refreshOwned() }
+  if(!book){ app.innerHTML = "<h1>My Wishful Thoughts</h1><p>Coming soon.</p>"; return }
+  home();
+})();
+</script>
+</body>
+</html>
