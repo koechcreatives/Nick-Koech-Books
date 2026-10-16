@@ -48,7 +48,8 @@ const KEY = "sb_publishable_wggLzRt2tUxcyjPY0znQAg_BGGFVwt2";
 const REC = Object.fromEntries(new URLSearchParams(location.hash.slice(1)));
 const sb = supabase.createClient(URL_, KEY);
 const app = document.getElementById("app");
-const PK = "pk_test_45cfe233a23758b43ebb77a97a1ef187601ef17f";
+const PK = "const PK = "pk_live_95c0e346e06201fe6ff3d274c2b36003b8795594";
+const PAYMENTS_OPEN = true;";
 const PAYMENTS_OPEN = false; // set to true once Paystack live keys are in place
 const RATE = 130; // KES per USD for international readers
 let book = null, user = null, note = "", owned = false;
