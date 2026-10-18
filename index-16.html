@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Books by Nick Koech</title>
+<meta name="description" content="Novels and nonfiction by Nick Koech, a Kenyan author. Read the first chapters free.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Books by Nick Koech">
+<meta property="og:description" content="Novels and nonfiction by Nick Koech, a Kenyan author. Read the first chapters free.">
+<meta property="og:image" content="https://nickkoechbooks.site/author.jpg">
+<meta property="og:url" content="https://nickkoechbooks.site/">
+<meta name="twitter:card" content="summary">
+<style>
+:root{--bg:#f5f0e8;--ink:#2a2d36;--soft:#6a6558;--acc:#7a2437;--on:#fff;--card:#fffdf8;--line:#ddd3c3}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1c22;--ink:#efe9df;--soft:#a39e92;--acc:#e8a0b0;--on:#1b1c22;--card:#25262e;--line:#3a3b45}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,sans-serif}
+main{max-width:34rem;margin:0 auto;padding:1.5rem 1.2rem 4rem}
+h1{font:700 2.3rem/1.1 Georgia,serif;margin:.5rem 0}
+.by{color:var(--soft);margin:0 0 1.4rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.1rem;margin:1.2rem 0}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:.7rem 1.1rem;background:var(--acc);color:var(--on);margin:.3rem .3rem .3rem 0}
+button.alt{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+button:disabled{opacity:.5}
+input{font:inherit;width:100%;padding:.7rem;margin:.3rem 0;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.price{font-size:1.2rem;font-weight:600}
+.msg{color:var(--acc);min-height:1.4em}
+.top{display:flex;justify-content:space-between;align-items:center;color:var(--soft);font-size:.9rem}
+.top a,.link,.foot a{color:var(--acc)}
+.gn{display:inline-block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);font-weight:700;margin:0 0 .2rem}
+.desc{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+details{border-top:1px solid var(--line);padding:.6rem 0}summary{font-weight:600;cursor:pointer}
+.steps{margin:.4rem 0 0;padding-left:1.2rem}
+html{scroll-behavior:smooth}[id]{scroll-margin-top:6rem}
+.nav2{position:sticky;top:0;z-index:5;background:var(--bg);margin:-1.5rem -1.2rem 0;padding:.7rem 1.2rem .4rem;border-bottom:1px solid var(--line)}
+.nav2 b{font:700 1.05rem Georgia,serif;display:block}
+.nav2 span{display:flex;gap:1.2rem;overflow-x:auto;white-space:nowrap;padding:.3rem 0;scrollbar-width:none}
+.nav2 a{font-size:.9rem;text-decoration:none;font-weight:600;color:var(--acc)}
+.acct{color:var(--soft);font-size:.85rem;margin:.6rem 0 0}
+.bk p{margin:.4rem 0}
+.msg:empty{display:none}
+.read{font:1.15rem/1.8 Georgia,serif;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.read p{margin:0 0 1.1em}
+.ch{color:var(--soft);margin:0}
+.sz{display:flex;gap:.4rem;margin:.6rem 0}.sz button{padding:.4rem .9rem}
+.toc button{display:block;width:100%;text-align:left;margin:.3rem 0}
+h2{font:700 1.4rem/1.2 Georgia,serif;margin:.2rem 0 .5rem}
+.about{display:flex;gap:1rem;align-items:flex-start}.about img{width:84px;height:84px;border-radius:50%;object-fit:cover;flex:none}
+.nav{display:flex;justify-content:space-between;margin-top:1.5rem}
+.hero{display:flex;gap:1rem;align-items:center;margin:.6rem 0 1rem}.hero img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none;border:2px solid var(--acc)}.hero h1{margin:0;font-size:1.9rem}.hero .by{margin:.2rem 0 0}
+.bk{display:flex;gap:1rem;align-items:flex-start}.bk img{width:124px;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.28);flex:none}.bk h2{margin-top:0}
+.nav{gap:.6rem}.nav button{flex:1;margin:0}
+.tools{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}.tools button{padding:.4rem .8rem;margin:0}
+.pg{height:4px;background:var(--line);border-radius:2px;margin:.5rem 0 1rem}.pg i{display:block;height:100%;background:var(--acc);border-radius:2px}
+body.light{--bg:#fff;--ink:#1b2430;--soft:#5a6573;--acc:#7a2437;--on:#fff;--card:#fff;--line:#d5d9df}
+body.sepia{--bg:#f4ecd8;--ink:#3b2f1e;--soft:#7a6a52;--acc:#8a4b1f;--on:#fff;--card:#fbf5e6;--line:#e0d3b4}
+body.dark{--bg:#14181f;--ink:#e8eaee;--soft:#9aa4b2;--acc:#e8a0b0;--on:#14181f;--card:#1f2630;--line:#323b48}
+.cv{display:block;width:62%;max-width:240px;aspect-ratio:2/3;object-fit:cover;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.32);margin:1rem auto}
+</style>
+</head>
+<body>
+<main id="app">Loading…</main>
+<script src="https://js.paystack.co/v2/inline.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+const URL_ = "https://satitxyuyzsgfmprqbqh.supabase.co";
+const KEY = "sb_publishable_wggLzRt2tUxcyjPY0znQAg_BGGFVwt2";
+const REC = Object.fromEntries(new URLSearchParams(location.hash.slice(1)));
+const sb = supabase.createClient(URL_, KEY);
+const app = document.getElementById("app");
+const PK = "pk_live_95c0e346e06201fe6ff3d274c2b36003b8795594";
+const PAYMENTS_OPEN = true;
+const RATE = 130; // KES per USD for international readers
+let book = null, user = null, note = "", owned = false;
+const WA = "254753834419", SITE = "https://nickkoechbooks.site/";
+try{ const rc = (new URLSearchParams(location.search).get("ref")||"").toUpperCase().trim(); if(/^[A-Z0-9]{4,12}$/.test(rc)) localStorage.setItem("ref", rc) }catch(e){}
+let recovering = REC.type === "recovery", mismatch = false;
+let fs = 1.15, allBooks = [], ownedSet = new Set();
+try{ fs = Number(localStorage.getItem("fs")) || 1.15 }catch(e){}
+let lh = 1.8; try{ lh = Number(localStorage.getItem("lh")) || 1.8 }catch(e){}
+function setTheme(t){ document.body.className = t || ""; try{localStorage.setItem("th", t || "")}catch(e){} }
+try{ setTheme(localStorage.getItem("th") || "") }catch(e){}
+const totals = {};
+const SPECIAL = /^(Introduction|Bonus Chapter|Conclusion):/;
+const isSpecial = c => SPECIAL.test(c.title || "");
+const chLabel = c => isSpecial(c) ? c.title.split(":")[0] : "Chapter " + c.chapter_number;
+async function chInfo(){
+  if(totals[book.id]) return totals[book.id];
+  const r = await sb.rpc("get_chapter_list",{p_book_id:book.id});
+  const d = r.data || [];
+  const nums = d.map(c => c.chapter_number);
+  totals[book.id] = { first: nums.length ? Math.min(...nums) : 1, last: nums.length ? Math.max(...nums) : 0, main: d.filter(c => c.chapter_number >= 1 && !isSpecial(c)).length };
+  return totals[book.id];
+}
+if(REC.error_code) note = "That link has expired or was already used. Please request a new one.";
+
+const COVERS = {wishful:"cover-wishful.jpg", bread:"cover-bread.jpg", thirsty:"cover-thirsty.jpg", teacher:"cover-teacher.jpg"};
+const GENRES = {wishful:"Fiction", thirsty:"Fiction", bread:"Personal finance \u00b7 Financial discipline", teacher:"Inspirational \u00b7 Non-fiction \u00b7 Mentorship"};
+const genreOf = b => { const t = ((b && b.title) || "").toLowerCase(); for(const k in GENRES) if(t.includes(k)) return GENRES[k]; return "" };
+const trustHtml = () => `<div class="card" id="how"><h2>How it works</h2><ol class="steps"><li>Read the free sample chapters of any book.</li><li>Create an account and pay securely through Paystack.</li><li>Read the full book online on your phone. Log in any time to find it in My Library.</li></ol></div>
+<div class="card" id="help"><h2>Questions</h2>
+<details><summary>I paid. Where is my book?</summary><p>Log out and log in again, then look under My Library. If it still isn't there, message me on WhatsApp with your payment reference.</p></details>
+<details><summary>I forgot my password</summary><p>Tap Log in / Sign up, then use the forgot password link and follow the email.</p></details>
+<details><summary>Can I read on a new phone?</summary><p>Yes. Log in on the new phone and follow the prompt to move your account to it. If that doesn't work, message me on WhatsApp.</p></details>
+<details><summary>Can I download the book?</summary><p>No. Books are read online on this site.</p></details>
+<p>Still stuck? <a class="link" href="https://wa.me/${WA}" target="_blank" rel="noopener">WhatsApp me</a> or email <a class="link" href="mailto:nickkoechbooks@gmail.com">nickkoechbooks@gmail.com</a>.</p></div>`;
+const coverOf = b => { const t = ((b && b.title) || "").toLowerCase(); for(const k in COVERS) if(t.includes(k)) return COVERS[k]; return "" };
+
+function did(){
+  try{let d=localStorage.getItem("did");if(!d){d=crypto.randomUUID();localStorage.setItem("did",d)}return d}
+  catch(e){return "no-storage"}
+}
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const fmt = t => t.split(/\n{2,}/).map(p => "<p>"+esc(p).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\*(.+?)\*/g,"<i>$1</i>").replace(/\n/g,"<br>")+"</p>").join("");
+const isKenya = () => { try{return Intl.DateTimeFormat().resolvedOptions().timeZone==="Africa/Nairobi"}catch(e){return false} };
+function human(e){
+  const m = (e && e.message) || "";
+  if(m.includes("device_mismatch")) return "This account is linked to another phone. Log in on that phone, or contact the author to reset.";
+  if(m.includes("not_purchased")) return "You haven't bought this book yet.";
+  if(m.includes("not_logged_in")) return "Log in to keep reading.";
+  if(m.includes("chapter_not_found")) return "That's the last chapter available.";
+  return m || "Something went wrong. Try again.";
+}
+
+function priceInfo(b = book){
+  const kes = isKenya() ? b.price_kes : Math.round(Number(b.price_usd)*RATE);
+  const label = isKenya() ? "KES "+kes : "KES "+kes+" (about USD "+Number(b.price_usd).toFixed(2)+")";
+  return {kes,label};
+}
+async function refreshOwned(){
+  owned = false; ownedSet = new Set();
+  if(!user) return;
+  const r = await sb.from("purchases").select("book_id");
+  (r.data || []).forEach(x => ownedSet.add(x.book_id));
+  owned = !!(book && ownedSet.has(book.id));
+}
+async function library(){
+  book = null; owned = false;
+  const mine = allBooks.filter(b => ownedSet.has(b.id));
+  const mineHtml = mine.length ? '<h2>My Library</h2>' + mine.map(b => { let l = 1; try{ l = Number(localStorage.getItem("last_"+b.id)) || 1 }catch(e){} return `<div class="card bk">${coverOf(b)?'<img src="'+coverOf(b)+'" alt="Cover of '+esc(b.title)+'">':''}<div><h2>${esc(b.title)}</h2><button data-read="${b.id}">${l>1?"Continue \u00b7 Ch. "+l:"Start reading"}</button></div></div>` }).join("") + '<h2>All books</h2>' : "";
+  const cards = allBooks.map(b => `<div class="card bk">${coverOf(b)?'<img src="'+coverOf(b)+'" alt="Cover of '+esc(b.title)+'">':''}<div><span class="gn">${esc(genreOf(b))}</span><h2>${esc(b.title)}</h2><p class="desc">${esc(b.description||"")}</p><p class="price">${ownedSet.has(b.id) ? "You own this book" : priceInfo(b).label}</p>${ownedSet.has(b.id)?'':'<button data-sample="'+b.id+'">Read free sample</button>'}<button class="alt" data-id="${b.id}">${ownedSet.has(b.id)?"Open":"Details &amp; buy"}</button></div></div>`).join("");
+  app.innerHTML = `<nav class="nav2"><b>Nick Koech Books</b><span><a href="#" data-go="books">Books</a><a href="#" data-go="how">How it works</a><a href="#" data-go="about">About</a><a href="#" data-go="help">Help</a>${user&&ownedSet.size?'<a href="#" id="refl">Refer &amp; earn</a>':''}</span></nav>
+    ${user?'<div class="acct">'+esc(user.email)+' · <a href="#" id="out">Log out</a></div>':''}
+    <div class="hero"><img src="author.jpg" alt="Nick Koech"><div><h1>Nick Koech</h1><p class="by">Stories that stay with you. Books that change how you think.</p></div></div><p>Novels and nonfiction by Nick Koech, a Kenyan author exploring love, ambition, money, leadership and the choices that shape our lives. Read the first chapters of any book free.</p><div id="books"></div>${mineHtml}${cards}
+    ${trustHtml()}
+    ${refCard()}
+    ${user?'':'<div class="card"><b>Have an account?</b><p>Log in or sign up to buy books and keep reading on your phone.</p><button id="goauth">Log in / Sign up</button></div>'}
+    ${mismatchHtml()}
+    <p class="msg" id="msg">${esc(note)}</p>${footerHtml()}`;
+  note = "";
+  const $ = id => document.getElementById(id);
+  if($("fp")) $("fp").onclick = e => { e.preventDefault(); forgot() };
+  if($("sw")) $("sw").onclick = switchDevice;
+  if($("goauth")) $("goauth").onclick = () => authView("in");
+  if($("ref")) $("ref").onclick = referView;
+  if($("refl")) $("refl").onclick = e => { e.preventDefault(); referView() };
+  document.querySelectorAll("a[data-go]").forEach(a => a.onclick = e => { e.preventDefault(); const t = document.getElementById(a.dataset.go); if(t) t.scrollIntoView({behavior:"smooth"}) });
+  document.querySelectorAll("button[data-sample]").forEach(btn => btn.onclick = async () => {
+    book = allBooks.find(x => x.id === btn.dataset.sample); owned = ownedSet.has(book.id);
+    const I = await chInfo(); reader(I.first);
+  });
+  document.querySelectorAll("button[data-id]").forEach(btn => btn.onclick = () => {
+    book = allBooks.find(x => x.id === btn.dataset.id); owned = ownedSet.has(book.id); home();
+  });
+  if($("out")) $("out").onclick = async e => { e.preventDefault(); await sb.auth.signOut(); user=null; owned=false; ownedSet=new Set(); library() };
+  document.querySelectorAll("button[data-read]").forEach(btn => btn.onclick = () => { book = allBooks.find(x => x.id === btn.dataset.read); owned = true; let l = 1; try{ l = Number(localStorage.getItem("last_"+book.id)) || 1 }catch(e){} reader(l) });
+  if($("in")) $("in").onclick = async () => {
+    const {data,error} = await sb.auth.signInWithPassword({email:$("em").value.trim(),password:$("pw").value});
+    if(error){ $("msg").textContent = error.message; return }
+    user = data.user; await registerDevice(); await refreshOwned(); library();
+  };
+  if($("up")) $("up").onclick = async () => {
+    const {data,error} = await sb.auth.signUp({email:$("em").value.trim(),password:$("pw").value});
+    if(error){ $("msg").textContent = error.message; return }
+    if(data.session){ user = data.user; await registerDevice(); await refreshOwned(); library() }
+    else $("msg").textContent = "Check your email to confirm your account, then log in.";
+  };
+}
+function buy(){
+  if(!PAYMENTS_OPEN) return;
+  if(!user){ note="Log in or sign up first, then tap Buy."; return authView("in") }
+  if(!window.PaystackPop){ note="Payment didn't load. Check your connection and try again."; return home() }
+  new PaystackPop().newTransaction({
+    key:PK, email:user.email, amount:priceInfo().kes*100, currency:"KES",
+    metadata:{user_id:user.id, book_id:book.id},
+    onSuccess: async t => {
+      app.innerHTML = "Confirming your payment…";
+      const {data,error} = await sb.functions.invoke("dynamic-service",{body:{reference:t.reference,book_id:book.id}});
+      let why = "";
+      if(error){
+        why = error.name + ": " + (error.message || "");
+        try{ if(error.context && error.context.json){ why += " " + JSON.stringify(await error.context.json()) } }catch(e){}
+      } else if(data && data.error){ why = data.error }
+      if(why) note = "We couldn't confirm your payment (" + why + "). Reference: " + t.reference;
+      else { note = "Payment confirmed. Enjoy the book!"; await refreshOwned(); }
+      home();
+    },
+    onCancel: () => { note="Payment cancelled."; home() }
+  });
+}
+
+function authView(mode = "in"){
+  const up = mode === "up";
+  app.innerHTML = `<div class="top"><a href="#" id="bk">← Back</a><span></span></div>
+    <h1>${up?"Create account":"Welcome back"}</h1>
+    <p class="by">${up?"Sign up to buy books and read on your phone.":"Log in to continue reading."}</p>
+    <div class="card">
+      <input id="em" type="email" placeholder="Email" autocomplete="email">
+      <input id="pw" type="password" placeholder="Password (6+ characters)" autocomplete="${up?"new-password":"current-password"}">
+      <button id="go">${up?"Sign up":"Log in"}</button>
+      <p class="msg" id="msg">${esc(note)}</p>
+      <p>${up?'Already have an account? <a href="#" id="sw2">Log in</a>':'New here? <a href="#" id="sw2">Create an account</a> · <a class="link" href="#" id="fp">Forgot password?</a>'}</p>
+    </div>`;
+  note = "";
+  const $ = id => document.getElementById(id);
+  const back = () => book ? home() : library();
+  $("bk").onclick = e => { e.preventDefault(); back() };
+  $("sw2").onclick = e => { e.preventDefault(); authView(up ? "in" : "up") };
+  if($("fp")) $("fp").onclick = e => { e.preventDefault(); forgot() };
+  $("go").onclick = async () => {
+    const creds = {email:$("em").value.trim(), password:$("pw").value};
+    const {data,error} = up ? await sb.auth.signUp(creds) : await sb.auth.signInWithPassword(creds);
+    if(error){ $("msg").textContent = error.message; return }
+    if(!data.session){ $("msg").textContent = "Check your email to confirm your account, then log in."; return }
+    user = data.user; await registerDevice(); await refreshOwned(); back();
+  };
+}
+
+function footerHtml(){
+  const wa = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Hello Nick, I need help with my account on your book site.");
+  return `<div class="card" id="about"><div class="about"><img src="author.jpg" alt="Nick Koech"><div><b>About the author</b><p>Nick Koech is a Kenyan author, mentor and speaker based in Nairobi, with roots in Kericho. He writes across fiction, nonfiction and screenwriting, from novels about love, ambition and second chances to candid books on money, leadership and teaching. Alongside his writing, he works in business development and mentors others, and he brings that real-world experience to every page.</p></div></div>
+    <p class="foot">Need help? <a href="${wa}" target="_blank" rel="noopener">Chat with me on WhatsApp</a> or email <a href="mailto:nickkoechbooks@gmail.com">nickkoechbooks@gmail.com</a></p><p class="foot"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of use</a></p></div>`;
+}
+function mismatchHtml(){
+  return mismatch ? '<div class="card"><b>New phone?</b><p>This account is linked to another phone. You can switch it to this phone (up to 2 times).</p><button id="sw">Use this phone</button></div>' : "";
+}
+async function switchDevice(){
+  const {error} = await sb.rpc("switch_device",{p_device_id:did()});
+  if(error) note = (error.message||"").includes("reset_limit") ? "You've used all your phone switches. Please contact the author on WhatsApp." : human(error);
+  else { mismatch = false; note = "Done. This phone is now your reading phone." }
+  book ? home() : library();
+}
+async function forgot(){
+  const em = document.getElementById("em").value.trim(), m = document.getElementById("msg");
+  if(!em){ m.textContent = "Type your email above first."; return }
+  const {error} = await sb.auth.resetPasswordForEmail(em,{redirectTo:SITE});
+  m.textContent = error ? error.message : "Check your email for a reset link.";
+}
+function resetView(){
+  app.innerHTML = '<h1>New password</h1><div class="card"><input id="np" type="password" placeholder="New password (6+ characters)" autocomplete="new-password"><button id="sv">Save password</button></div><p class="msg" id="msg"></p><p><a class="link" href="#" id="bk">Back to the site</a></p>';
+  document.getElementById("bk").onclick = e => { e.preventDefault(); recovering = false; history.replaceState(null,"",SITE); start() };
+  document.getElementById("sv").onclick = async () => {
+    let sess = (await sb.auth.getSession()).data.session;
+    if(!sess && REC.access_token && REC.refresh_token){
+      const r = await sb.auth.setSession({access_token:REC.access_token, refresh_token:REC.refresh_token});
+      sess = r.data && r.data.session;
+    }
+    if(!sess){ document.getElementById("msg").textContent = "This reset link has expired or was already used. Tap Back, then Forgot password to get a new one."; return }
+    const {error} = await sb.auth.updateUser({password:document.getElementById("np").value});
+    if(error){ document.getElementById("msg").textContent = error.message; return }
+    await sb.auth.signOut(); user = null; recovering = false; history.replaceState(null,"",SITE);
+    note = "Password updated. Please log in."; start();
+  };
+}
+function start(){
+  if(!allBooks.length){ app.innerHTML = "<h1>Books by Nick Koech</h1><p>Coming soon.</p>" + footerHtml(); return }
+  if(allBooks.length === 1) book = allBooks[0];
+  if(book){ owned = ownedSet.has(book.id); home() } else library();
+}
+
+async function registerDevice(){
+  mismatch = false;
+  const {error} = await sb.rpc("register_device",{p_device_id:did()});
+  if(error){
+    if((error.message||"").includes("device_mismatch")){ mismatch = true; note = "This account is linked to another phone."; return false }
+    await sb.auth.signOut(); user=null; note=human(error); return false;
+  }
+  await claimRef();
+  return true;
+}
+async function claimRef(){
+  try{
+    const rc = localStorage.getItem("ref");
+    if(!rc) return;
+    const r = await sb.rpc("claim_referral",{p_code:rc});
+    if(!r.error) localStorage.removeItem("ref");
+  }catch(e){}
+}
+const refCard = () => (user && ownedSet.size) ? '<div class="card"><b>Refer &amp; earn</b><p>Invite friends to read. You earn 30% of every book they buy.</p><button class="alt" id="ref">Get my invite link</button></div>' : "";
+async function referView(){
+  app.innerHTML = "Loading…";
+  const back = () => (book ? home() : library());
+  const c = await sb.rpc("get_my_referral_code");
+  if(c.error || !c.data){ note = "Refer & earn is for readers who have bought a book."; return back() }
+  const s = await sb.rpc("my_referral_summary");
+  const d = s.data || {};
+  const link = SITE + "?ref=" + c.data;
+  const wa = "https://wa.me/?text=" + encodeURIComponent("I'm reading books by Nick Koech and thought you'd enjoy them. Start with the free chapters: " + link);
+  const kes = n => "KES " + Number(n || 0).toLocaleString();
+  const avail = Number(d.available || 0), min = Number(d.min_payout || 200);
+  app.innerHTML = `
+    <div class="top"><a href="#" id="back">← Back</a><span>${esc(user.email)}</span></div>
+    <h1>Refer &amp; earn</h1>
+    <p>Share your link. When someone joins through it and buys a book, you earn ${d.rate || 30}% of what they pay, on every book they buy.</p>
+    <div class="card"><b>Your invite link</b>
+      <input id="lnk" readonly value="${esc(link)}">
+      <button id="cp">Copy link</button>
+      <button class="alt" id="wa">Share on WhatsApp</button>
+    </div>
+    <div class="card"><b>Your earnings</b>
+      <p>Friends who joined: <b>${Number(d.referred || 0)}</b><br>Friends who bought: <b>${Number(d.buyers || 0)}</b><br>Available to withdraw: <b>${kes(avail)}</b><br>Payout requested: <b>${kes(d.requested)}</b><br>Paid to you: <b>${kes(d.paid)}</b></p>
+      ${avail >= min ? '<input id="ph" type="tel" placeholder="Your M-PESA number, e.g. 0712345678" autocomplete="tel"><button id="po">Request payout of ' + kes(avail) + '</button>' : '<p>You can request a payout once you have at least ' + kes(min) + ' available.</p>'}
+    </div>
+    <p class="msg" id="msg">${esc(note)}</p>
+    <p><small>Payouts are sent manually to your M-PESA number after you request them. Commission applies only to people who join through your link before their first purchase, and may be cancelled on refunded sales.</small></p>`;
+  note = "";
+  const $ = id => document.getElementById(id);
+  $("wa").onclick = () => window.open(wa, "_blank", "noopener");
+  $("back").onclick = e => { e.preventDefault(); back() };
+  $("lnk").onclick = () => $("lnk").select();
+  $("cp").onclick = async () => {
+    try{ await navigator.clipboard.writeText(link); $("msg").textContent = "Link copied." }
+    catch(e){ $("lnk").select(); $("msg").textContent = "Press and hold the link to copy it." }
+  };
+  if($("po")) $("po").onclick = async () => {
+    const ph = $("ph").value.trim();
+    if(!ph){ $("msg").textContent = "Enter your M-PESA number."; return }
+    $("po").disabled = true;
+    const r = await sb.rpc("request_payout",{p_phone:ph});
+    if(r.error){
+      const m = r.error.message || "";
+      $("msg").textContent = m.includes("invalid_phone") ? "That M-PESA number doesn't look right." : m.includes("below_minimum") ? "You need at least " + kes(min) + " available." : "Couldn't send the request. Try again.";
+      $("po").disabled = false; return;
+    }
+    note = "Payout of " + kes(r.data) + " requested. You'll receive it on M-PESA soon.";
+    referView();
+  };
+  window.scrollTo(0,0);
+}
+
+async function home(){
+  const price = book ? priceInfo().label : "";
+  app.innerHTML = `
+    <div class="top"><span>${allBooks.length>1?'<a href="#" id="all">← All books</a>':'Nick Koech'}</span><span>${user?esc(user.email)+' · <a href="#" id="out">Log out</a>':''}</span></div>
+    ${book&&coverOf(book)?'<img class="cv" src="'+coverOf(book)+'" alt="Cover of '+esc(book.title)+'">':''}
+    ${book&&genreOf(book)?'<span class="gn">'+esc(genreOf(book))+'</span>':''}
+    <h1>${book?esc(book.title):'My Wishful Thoughts'}</h1>
+    <p class="by">By Nick Koech</p>
+    <p>${book?esc(book.description||''):''}</p>
+    <p class="price">${price}</p>
+    <button id="sample">Read free chapters</button>
+    <button class="alt" id="toc">All chapters</button>
+    ${user?'<button class="alt" id="cont">Continue reading'+(Number(localStorage.getItem("last_"+book.id)||1)>1?" (chapter "+Number(localStorage.getItem("last_"+book.id))+")":"")+'</button>':''}
+    ${owned?'<button class="alt" disabled>You own this book</button>':(PAYMENTS_OPEN?'<button class="alt" id="buy">Buy this book</button>':'<button class="alt" disabled>Payments opening soon</button>')}
+    ${refCard()}
+    ${user?'':'<div class="card"><b>Have an account?</b><p>Log in or sign up to buy books and keep reading on your phone.</p><button id="goauth">Log in / Sign up</button></div>'}
+    ${mismatchHtml()}
+    <p class="msg" id="msg">${esc(note)}</p>${footerHtml()}`;
+  note = "";
+  const $ = id => document.getElementById(id);
+  if($("fp")) $("fp").onclick = e => { e.preventDefault(); forgot() };
+  if($("sw")) $("sw").onclick = switchDevice;
+  if($("goauth")) $("goauth").onclick = () => authView("in");
+  if($("ref")) $("ref").onclick = referView;
+  if($("refl")) $("refl").onclick = e => { e.preventDefault(); referView() };
+  document.querySelectorAll("a[data-go]").forEach(a => a.onclick = e => { e.preventDefault(); const t = document.getElementById(a.dataset.go); if(t) t.scrollIntoView({behavior:"smooth"}) });
+  $("sample").onclick = async () => { const I = await chInfo(); reader(I.first) };
+  if($("buy")) $("buy").onclick = buy;
+  $("toc").onclick = toc;
+  if($("all")) $("all").onclick = e => { e.preventDefault(); library() };
+  if($("cont")) $("cont").onclick = () => reader(Number(localStorage.getItem("last_"+book.id)||1));
+  if($("out")) $("out").onclick = async e => { e.preventDefault(); await sb.auth.signOut(); user=null; owned=false; ownedSet=new Set(); home() };
+  if($("in")) $("in").onclick = async () => {
+    const {data,error} = await sb.auth.signInWithPassword({email:$("em").value.trim(),password:$("pw").value});
+    if(error){ $("msg").textContent = error.message; return }
+    user = data.user;
+    await registerDevice(); await refreshOwned(); home();
+  };
+  if($("up")) $("up").onclick = async () => {
+    const {data,error} = await sb.auth.signUp({email:$("em").value.trim(),password:$("pw").value});
+    if(error){ $("msg").textContent = error.message; return }
+    if(data.session){ user = data.user; await registerDevice(); await refreshOwned(); home() }
+    else $("msg").textContent = "Check your email to confirm your account, then log in.";
+  };
+}
+
+async function toc(){
+  app.innerHTML = "Loading chapters…";
+  const {data,error} = await sb.rpc("get_chapter_list",{p_book_id:book.id});
+  if(error || !data){ note = "Couldn't load the chapter list."; return home() }
+  app.innerHTML = `<div class="top"><a href="#" id="back">← Back</a><span>${data.filter(c => c.chapter_number >= 1 && !isSpecial(c)).length} chapters</span></div><h1>Chapters</h1><div class="toc">`
+    + data.map(c => `<button class="alt" data-n="${c.chapter_number}">${isSpecial(c) ? "" : c.chapter_number + ". "}${esc(c.title)}${(!c.is_sample && !owned) ? " 🔒" : ""}</button>`).join("")
+    + `</div>`;
+  document.getElementById("back").onclick = e => { e.preventDefault(); home() };
+  document.querySelectorAll(".toc button").forEach(b => b.onclick = () => reader(Number(b.dataset.n)));
+  window.scrollTo(0,0);
+}
+
+async function reader(n){
+  app.innerHTML = "Loading…";
+  const {data,error} = await sb.rpc("get_chapter",{p_book_id:book.id,p_chapter_number:n,p_device_id:did()});
+  if(error || !data || !data.length){
+    note = human(error);
+    if(error && (error.message||"").includes("device_mismatch")) mismatch = true;
+    if(n>1 && error && error.message.includes("chapter_not_found")) { return end(n) }
+    return home();
+  }
+  const c = data[0];
+  const I = await chInfo(), N = I.main, first = I.first, last = I.last;
+  try{localStorage.setItem("last_"+book.id,n)}catch(e){}
+  app.innerHTML = `
+    <div class="top"><a href="#" id="back">← Book</a><a href="#" id="toc2">Chapters</a><span>${isSpecial(c) ? chLabel(c) : (N ? "Chapter "+c.chapter_number+" of "+N : "Ch. "+c.chapter_number)}</span></div>
+    ${N?'<div class="pg"><i style="width:'+Math.min(100,Math.max(0,Math.round(c.chapter_number/N*100)))+'%"></i></div>':''}
+    <div class="tools"><button class="alt" id="sm">A−</button><button class="alt" id="lg">A+</button><button class="alt" id="sp">Spacing</button><button class="alt" data-th="light">Light</button><button class="alt" data-th="sepia">Sepia</button><button class="alt" data-th="dark">Dark</button></div>
+    <h1>${esc(c.title)}</h1>
+    <div class="read" id="txt" style="font-size:${fs}rem;line-height:${lh}">${fmt(c.content)}</div>
+    <div class="nav">${n>first?'<button class="alt" id="prev">Previous</button>':''}<button id="next">${last&&n>=last?"Back to book":"Next chapter"}</button></div>`;
+  document.getElementById("txt").oncontextmenu = e => e.preventDefault();
+  document.getElementById("back").onclick = e => { e.preventDefault(); home() };
+  document.getElementById("toc2").onclick = e => { e.preventDefault(); toc() };
+  const setFs = d => { fs = Math.min(2, Math.max(.9, fs + d)); try{localStorage.setItem("fs", fs)}catch(e){} document.getElementById("txt").style.fontSize = fs + "rem" };
+  document.getElementById("sm").onclick = () => setFs(-.1);
+  document.getElementById("lg").onclick = () => setFs(.1);
+  if(n>first) document.getElementById("prev").onclick = () => reader(n-1);
+  document.getElementById("next").onclick = () => (last && n >= last) ? home() : reader(n+1);
+  document.getElementById("sp").onclick = () => { lh = lh >= 2 ? 1.5 : Math.round((lh + .25)*100)/100; try{localStorage.setItem("lh", lh)}catch(e){} document.getElementById("txt").style.lineHeight = lh };
+  document.querySelectorAll("button[data-th]").forEach(b => b.onclick = () => setTheme(b.dataset.th));
+  window.scrollTo(0,0);
+}
+function end(n){ note="You've reached the end of what's available."; reader(n-1) }
+
+(async () => {
+  const b = await sb.from("books").select("*").eq("published",true).order("created_at");
+  allBooks = b.data || [];
+  if(allBooks.length === 1) book = allBooks[0];
+  const s = await sb.auth.getSession();
+  if(s.data.session && !recovering){ user = s.data.session.user; await registerDevice(); await refreshOwned() }
+  if(recovering) return resetView();
+  start();
+})();
+</script>
+</body>
+</html>
