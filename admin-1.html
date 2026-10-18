@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin · Nick Koech Books</title>
+<style>
+:root{--bg:#eceef1;--ink:#1b2430;--soft:#5a6573;--acc:#5b3fa0;--card:#fff;--line:#d5d9df;--ok:#1f7a3e;--warn:#9a5b00}
+@media (prefers-color-scheme:dark){:root{--bg:#161b23;--ink:#e8eaee;--soft:#9aa4b2;--acc:#a894e6;--card:#1f2630;--line:#323b48;--ok:#6fd08c;--warn:#f0b35a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,sans-serif}
+main{max-width:40rem;margin:0 auto;padding:1.2rem 1rem 4rem}
+h1{font:700 1.8rem/1.1 Georgia,serif;margin:.3rem 0 .8rem}
+h2{font:700 1.2rem/1.2 Georgia,serif;margin:1.6rem 0 .5rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem;margin:.6rem 0}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:.6rem 1rem;background:var(--acc);color:#fff;margin:.3rem .3rem .3rem 0}
+button.alt{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+button:disabled{opacity:.5}
+input{font:inherit;width:100%;padding:.7rem;margin:.3rem 0;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.6rem 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.7rem .9rem}
+.stat b{display:block;font-size:1.5rem}.stat span{color:var(--soft);font-size:.85rem}
+.em{font-weight:600;word-break:break-all}.sub{color:var(--soft);font-size:.9rem}
+.ok{color:var(--ok)}.warn{color:var(--warn)}
+.msg{color:var(--acc);min-height:1.4em}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+const URL_ = "https://satitxyuyzsgfmprqbqh.supabase.co";
+const KEY = "sb_publishable_wggLzRt2tUxcyjPY0znQAg_BGGFVwt2";
+const sb = supabase.createClient(URL_, KEY);
+const app = document.getElementById("app");
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const kes = n => "KES " + Number(n || 0).toLocaleString();
+const day = d => d ? new Date(d).toLocaleDateString("en-KE", {day:"numeric", month:"short", year:"numeric"}) : "";
+let data = null, q = "";
+
+async function boot(){
+  const {data:{session}} = await sb.auth.getSession();
+  session ? load() : loginView("");
+}
+function loginView(msg){
+  app.innerHTML = `<h1>Admin</h1><div class="card"><input id="em" type="email" placeholder="Email" autocomplete="email"><input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="go">Log in</button><p class="msg" id="msg">${esc(msg)}</p></div>`;
+  document.getElementById("go").onclick = async () => {
+    const r = await sb.auth.signInWithPassword({email: document.getElementById("em").value.trim(), password: document.getElementById("pw").value});
+    if(r.error){ document.getElementById("msg").textContent = r.error.message; return }
+    load();
+  };
+}
+async function logout(){ await sb.auth.signOut(); loginView("") }
+async function load(){
+  app.innerHTML = "<p>Loading…</p>";
+  const r = await sb.rpc("admin_overview");
+  if(r.error){
+    const m = r.error.message || "";
+    app.innerHTML = `<h1>Admin</h1><div class="card"><p>${m.includes("not_admin") ? "This account isn't allowed to view this page." : "Couldn't load the data: " + esc(m)}</p><button id="lo">Log out</button></div>`;
+    document.getElementById("lo").onclick = logout;
+    return;
+  }
+  data = r.data; render();
+}
+function render(){
+  const d = data;
+  app.innerHTML = `
+    <div class="top"><h1>Admin</h1><div><button class="alt" id="rf">Refresh</button><button class="alt" id="lo">Log out</button></div></div>
+    <div class="stats">
+      <div class="stat"><b>${d.accounts}</b><span>Accounts</span></div>
+      <div class="stat"><b>${d.paying}</b><span>Paying customers</span></div>
+      <div class="stat"><b>${d.accounts - d.paying}</b><span>Not bought yet</span></div>
+      <div class="stat"><b>${kes(d.revenue)}</b><span>Revenue (${d.purchases} sales)</span></div>
+    </div>
+    <input id="sr" type="search" placeholder="Search by email" value="${esc(q)}">
+    <div id="lists"></div>`;
+  document.getElementById("rf").onclick = load;
+  document.getElementById("lo").onclick = logout;
+  document.getElementById("sr").oninput = e => { q = e.target.value.trim().toLowerCase(); lists() };
+  lists();
+}
+function lists(){
+  const d = data, f = a => a.filter(x => !q || (x.email || "").toLowerCase().includes(q));
+  const pay = f(d.payouts), paid = f(d.paid_customers), nb = f(d.not_bought);
+  document.getElementById("lists").innerHTML =
+    (pay.length ? `<h2>Payout requests waiting (${pay.length})</h2>` + pay.map(p => { const fee = p.amount <= 1520 ? 20 : p.amount <= 20040 ? 40 : 60, net = p.amount - fee; return `<div class="card"><div class="em">${esc(p.email)}</div><div>Requested ${kes(p.amount)} · M-PESA <b>${esc(p.phone)}</b></div><div class="sub">Fee ${kes(fee)} deducted, so they receive <b>${kes(net)}</b> · requested ${day(p.created)}</div>${p.status && p.status !== "pending" ? '<div class="warn">' + esc(p.status) + (p.note ? ": " + esc(p.note) : "") + "</div>" : ""}${p.status === "processing" ? "" : '<button data-go="' + esc(p.id) + '" data-info="' + esc(kes(net) + " to " + p.phone) + '">Approve &amp; pay ' + kes(net) + "</button>"}<button class="alt" data-pay="${esc(p.id)}" data-info="${esc(kes(p.amount) + " to " + p.phone)}">Mark paid manually</button></div>` }).join("") : "") +
+    `<h2>Paid customers (${paid.length})</h2>` +
+    (paid.length ? paid.map(c => `<div class="card"><div class="em">${esc(c.email)}</div><div>${esc(c.books || "")}</div><div class="sub">${c.count} ${c.count == 1 ? "purchase" : "purchases"} · ${kes(c.total)} · last ${day(c.last)} · joined ${day(c.joined)}</div></div>`).join("") : '<p class="sub">None found.</p>') +
+    `<h2>Not bought yet (${nb.length})</h2>` +
+    (nb.length ? nb.map(c => `<div class="card"><div class="em">${esc(c.email)}</div><div class="sub">Joined ${day(c.joined)} · ${c.confirmed ? '<span class="ok">email confirmed</span>' : '<span class="warn">email not confirmed</span>'}</div></div>`).join("") : '<p class="sub">None found.</p>');
+  document.querySelectorAll("button[data-go]").forEach(b => b.onclick = async () => {
+    if(!confirm("Send " + b.dataset.info + " now through Paystack?")) return;
+    b.disabled = true; b.textContent = "Sending…";
+    const r = await sb.functions.invoke("pay-referrer", {body: {id: b.dataset.go}});
+    const d = r.data || {};
+    alert(d.ok ? "Sent " + kes(d.net) + " (fee " + kes(d.fee) + "). Paystack status: " + d.status : "Not sent: " + (d.error || (r.error && r.error.message) || "unknown error"));
+    load();
+  });
+  document.querySelectorAll("button[data-pay]").forEach(b => b.onclick = async () => {
+    if(!confirm("Mark " + b.dataset.info + " as paid without sending anything? Only do this if you already paid it yourself.")) return;
+    b.disabled = true;
+    const r = await sb.rpc("admin_mark_payout_paid", {p_id: b.dataset.pay});
+    if(r.error){ alert("Couldn't update: " + r.error.message); b.disabled = false; return }
+    load();
+  });
+}
+boot();
+</script>
+</body>
+</html>
